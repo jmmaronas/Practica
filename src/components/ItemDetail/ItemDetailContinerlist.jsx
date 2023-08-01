@@ -15,7 +15,7 @@ function ItemDetailListContainer() {
             }))
             .catch((error) => {
                 console.log(error)
-             })
+            })
     }, [productId])
     if (loading) return <h1>Loading....</h1>
     return (
