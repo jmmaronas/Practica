@@ -9,6 +9,7 @@ export default function ItemCount({ add, increment, decrement, count }) {
                 <Button variant="secondary" disabled>{count}</Button>
                 <Button onClick={increment} variant="secondary">+</Button>
             </ButtonGroup>
+            
             <Button className='w-100 mt-2' onClick={add}>Comprar</Button>
         </div>
     );

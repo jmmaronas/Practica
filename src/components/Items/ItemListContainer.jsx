@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { getData, getDataByCategory } from "../../services/mockServices"
 import ItemList from "./ItemList"
+import Loading from "../Loading/Loading"
+import { getProducts, getProductsByCategory } from "../../services/firebaseServices"
+
 
 function ItemListContainer() {
     const [products, setProducts] = useState({})
     const [loading, setLoading] = useState(true)
     const { categoryId } = useParams()
 
+
     useEffect(() => {
-        const asyncFuction = categoryId ? getDataByCategory : getData
+
+
+        const asyncFuction = categoryId ? getProductsByCategory : getProducts
         asyncFuction(categoryId)
             .then((result) => {
                 console.log(result)
@@ -20,7 +25,7 @@ function ItemListContainer() {
                 console.log(error)
             })
     }, [categoryId])
-    if (loading) return <h1>Loading....</h1>
+    if (loading) return <h1><Loading/></h1>
     return (
         <ItemList products={products} />
     )

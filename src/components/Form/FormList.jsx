@@ -1,35 +1,50 @@
 import { Button, Form } from 'react-bootstrap';
 import FormItem from './FormItem';
 import { useState } from 'react';
+import { createProdcut } from '../../services/firebaseServices';
 
 const fields = [
     {
         id: "1",
-        title: "Nombre y Apellido",
-        name: "username",
-        placeholder: "Ingrese su nombre",
+        title: "Nombre",
+        name: "nombre",
+        placeholder: "Ingrese nombre del producto",
         type: "text"
     },
     {
         id: "2",
-        title: "Correo electronico",
-        name: "email",
-        placeholder: "cuante@provedor.com",
-        type: "email"
+        title: "Stock",
+        name: "stock",
+        placeholder: "stock del producto",
+        type: "number"
     },
     {
         id: "3",
-        title: "Password",
-        name: "password",
-        placeholder: "Ingrese una contraseña",
-        type: "password"
+        title: "Precio",
+        name: "precio",
+        placeholder: "valor del producto",
+        type: "number"
     },
     {
-        id: "3",
+        id: "4",
+        title: "Categoria",
+        name: "category",
+        placeholder: "Categoria del producto",
+        type: "text"
+    },    
+    {
+        id: "5",
         title: "Descripcion",
-        name: "description",
-        placeholder: "Descripcion del usuario",
+        name: "descripcion",
+        placeholder: "Detalle del producto",
         type: "textarea"
+    },    
+    {
+        id: "6",
+        title: "URL Imagen",
+        name: "url_imagen",
+        placeholder: "url de la imagen",
+        type: "text"
     }
 ]
 
@@ -37,14 +52,22 @@ const fields = [
 function FormList() {
     const [data, setData] = useState({})
 
+    
     const handleInput = ({ target }) => {
         console.log(`${target.name} : ${target.value}`)
         setData(prevValue => { return { ...prevValue, [target.name]: target.value } })
         console.log(data)
     }
-
-    const handleSubmit = (event) => {
+    
+    const handleSubmit =async (event) => {
         event.preventDefault()
+        console.log(data)
+        try {
+            const response= await createProdcut(data)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
         console.log(data)
     }
 

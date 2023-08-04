@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ItemDetail from "./";
+import { useCartContext } from "../../Context/hookCartContext";
 
 
 export default function ItemDetailList({ product }) {
-    const [cart, setCart] = useState([])
-    const [count, setCount] = useState(1)
+    const { cart, addToCart, isInCart } = useCartContext()
+    const [count, setCount] = useState(1)   
+    const [inCart, setInCart] = useState(false)
 
     const handleIncrement = () => {
         if (count <= product.stock)
@@ -17,22 +19,18 @@ export default function ItemDetailList({ product }) {
     }
 
     const onAdd = () => {
-        if (cart.some(cartItem => cartItem.id === product.id)) {
-            setCart(prevValue => {
-                prevValue.find(item => item.id === product.id).qty += count
-                return prevValue
-            })
-        } else {
-            setCart(prevValue => [...prevValue, { ...product, qty: count }])
-        }
-        product.stock -= count
-        setCount(1)
+        addToCart(product, count)
         console.log(cart)
     }
 
+    useEffect(()=>{
+        setInCart(isInCart(product.id))
+        if(isInCart(product.id))setCount(cart.find(prod=>prod.id===product.id).quantity)        
+    },[product, cart, isInCart])
+
     return (
         <div className="container d-flex gap-4 my-5 justify-content-center">
-            {<ItemDetail key={product.id} product={product} add={onAdd} increment={handleIncrement} decrement={handleDecrement} count={count} />}
+            {<ItemDetail key={product.id} product={product} add={onAdd} increment={handleIncrement} decrement={handleDecrement} count={count} isInCart={inCart}/>}
         </div>
     )
 }
