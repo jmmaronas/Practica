@@ -17,7 +17,6 @@ function ItemListContainer() {
         const asyncFuction = categoryId ? getProductsByCategory : getProducts
         asyncFuction(categoryId)
             .then((result) => {
-                console.log(result)
                 setProducts(result)
                 setLoading(false)
             })

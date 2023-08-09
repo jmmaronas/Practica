@@ -2,6 +2,7 @@ import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase
 import { db } from "./firebase.js"
 
 const prodcutRef = collection(db, "products")
+const orderRef = collection(db, "orders")
 
 export const getProducts = async () => {
     const products = []
@@ -35,4 +36,10 @@ export const createProdcut = async (prodcut) => {
     console.log(prodcut)
     const result = await addDoc(prodcutRef, prodcut)
     console.log(result)
+    return result
+}
+
+export const createOrder = async (data) => {
+    const {id} = await addDoc(orderRef, data)
+    return id
 }

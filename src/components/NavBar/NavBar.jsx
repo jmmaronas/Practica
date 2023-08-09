@@ -20,7 +20,7 @@ export default function NavBar() {
                                 Separated link
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Nav.Link as={Link} to='/product_maintenance'>Agregar Productos</Nav.Link>
                         <CartWidget/>
                     </Nav>
                 </Navbar.Collapse>

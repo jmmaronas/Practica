@@ -2,9 +2,9 @@ import { Button, Card} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
-export default function Item({product, add}) {
+export default function Item({product}) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className='m-auto' style={{ width: '18rem' }}>
       <Card.Img variant="top" src={product.url_imagen} />
       <Card.Body>
         <Card.Title>{product.nombre}</Card.Title>

@@ -1,10 +1,9 @@
-import { Card} from 'react-bootstrap';
-import ItemCount from '../Count/ItemCount';
+import { Card } from 'react-bootstrap';
 
 
-export default function Item({product, add, increment, decrement, count, isInCart}) {
+export default function Item({ product }) {
   return (
-    <Card style={{ width: '26rem' }}>
+    <>
       <Card.Img variant="top" src={product.url_imagen} />
       <Card.Body>
         <Card.Title>{product.nombre}</Card.Title>
@@ -12,8 +11,7 @@ export default function Item({product, add, increment, decrement, count, isInCar
           {product.descripcion}
         </Card.Text>
         <Card.Subtitle className='text-center my-3'>$ {product.precio} </Card.Subtitle>
-        <ItemCount product={product} add={add} increment={increment} decrement={decrement} count={count} isInCart={isInCart}/>
       </Card.Body>
-    </Card>
+    </>
   );
 }

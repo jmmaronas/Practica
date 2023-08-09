@@ -12,14 +12,14 @@ export default function CartContextProvider({ children }) {
     const addToCart = (product, qty) => {
         if (isInCart(product.id)) {
             const cartCopy = cart.slice(0)
-            cartCopy.find(prod => prod.id === product.id).quantity+=qty
+            cartCopy.find(prod => prod.id === product.id).quantity=qty
             setCart(cartCopy)
         } else {
             setCart([...cart, { ...product, quantity: qty }])
         }
     }
 
-    const deltTocart = (id) => {
+    const delToCart = (id) => {
         setCart(cart.filter(prod => prod.id !== id))
     }
 
@@ -37,7 +37,7 @@ export default function CartContextProvider({ children }) {
     const values = {
         cart,
         addToCart,
-        deltTocart,
+        delToCart,
         clearCart,
         isInCart,
         countCartProducts

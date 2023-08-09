@@ -16,7 +16,7 @@ export default function ItemList({ products }) {
     }
 
     return (
-        <div className="container d-flex gap-4 my-5">
+        <div className="container d-flex gap-4 my-5 flex-wrap justify-content-className='overflow-scroll' ">
             {products.map(product => <Item key={product.id} product={product} add={onAdd} />)}
         </div>
     )

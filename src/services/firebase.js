@@ -8,9 +8,10 @@ const firebaseConfig = {
     projectId: process.env.REACT_APP_FIREBASE_PROYECT_ID,
     storageBucket: process.env.REACT_APP_FIREBASE_SOTRAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGIN_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
 
-const app = initializeApp(firebaseConfig);
+
+export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app)
