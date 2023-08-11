@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { createProdcut } from "../../services/firebaseServices";
+import { createProdcut, getProductById, updateProductById } from "../../services/firebaseServices";
 import FormList from "../Form/FormList";
+import { useEffect } from "react";
 
 const productsFields = [
     {
@@ -30,14 +31,14 @@ const productsFields = [
         name: "category",
         placeholder: "Categoria del producto",
         type: "text"
-    },    
+    },
     {
         id: "5",
         title: "Descripcion",
         name: "descripcion",
         placeholder: "Detalle del producto",
         type: "textarea"
-    },    
+    },
     {
         id: "6",
         title: "URL Imagen",
@@ -47,27 +48,38 @@ const productsFields = [
     }
 ]
 
-function NewProduct() {
+function ProductForm({ productId }) {
     const [data, setData] = useState({})
-    
+
+
     const handleInput = ({ target }) => {
         console.log(`${target.name} : ${target.value}`)
         setData(prevValue => { return { ...prevValue, [target.name]: target.value } })
         console.log(data)
     }
-    
-    const handleSubmit =async (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const response= await createProdcut(data)            
+            if(productId){
+                await updateProductById(data)
+                alert("Actualizcion completa")
+                return
+            }
+            const response = await createProdcut(data)
             console.log(response)
         } catch (error) {
             console.log(error)
         }
     }
-    return ( 
-        <FormList  fields={productsFields} data={data} handleInput={handleInput} handleSubmit={handleSubmit} />
-     );
+
+    useEffect(() => {
+        if(productId)(async()=>setData(await getProductById(productId)))()
+    }, [productId])
+
+    return (
+        <FormList title={'Formulario de productos'} fields={productsFields} data={data} handleInput={handleInput} handleSubmit={handleSubmit} />
+    );
 }
 
-export default NewProduct;
+export default ProductForm;

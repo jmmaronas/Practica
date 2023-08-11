@@ -9,7 +9,9 @@ import ItemListContainer from './components/Items/ItemListContainer';
 import NavBar from './components/NavBar/NavBar';
 import CartList from './components/Cart/CartList';
 import ProdcutsMaintenance from './components/ProdcutsMaintenance/ProdcutsMaintenance';
-import NewProduct from './components/ProdcutsMaintenance/NewProduct';
+import ProductForm from './components/ProdcutsMaintenance/ProductForm';
+import UpdateProduct from './components/ProdcutsMaintenance/UpdateProduct';
+
 
 function App() {
   return (
@@ -25,7 +27,8 @@ function App() {
             <Route path='checkout' element={<Checkout />} />
           </Route>
           <Route path='/product_maintenance/' element={<ProdcutsMaintenance />} >
-            <Route path='new_product' element={<NewProduct />} />
+            <Route path='new_product' element={<ProductForm />} />
+            <Route path='update/:productId' element={<UpdateProduct/>}/>
           </Route>
           <Route path='*' element={<h1>Page not found</h1>} />
         </Routes>

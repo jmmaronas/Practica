@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore"
 import { db } from "./firebase.js"
 
 const prodcutRef = collection(db, "products")
@@ -30,6 +30,12 @@ export const getProductById = async (productId) => {
         return { id: snapshot.id, ...snapshot.data() }
     }
 
+}
+
+export const updateProductById = async (product) => {
+    const {id} = product
+    delete product.id
+    await setDoc(doc(db, "products", id), product)    
 }
 
 export const createProdcut = async (prodcut) => {

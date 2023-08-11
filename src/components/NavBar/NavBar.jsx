@@ -12,15 +12,15 @@ export default function NavBar() {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <NavDropdown title="Categorias" id="basic-nav-dropdown">                            
-                            <NavDropdown.Item as={NavLink} to="/category/categoria1">Categoria 1</NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/category/categoria2">Categoria 2</NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/category/categoria3">Categoria 3</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/category/notebook">Notebooks</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/category/desktop">Pc Escritorio</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/category/accesorios">Accesorios</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">
                                 Separated link
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to='/product_maintenance'>Agregar Productos</Nav.Link>
+                        <Nav.Link as={Link} to='/product_maintenance'>Mentenimiento de Productos</Nav.Link>
                         <CartWidget/>
                     </Nav>
                 </Navbar.Collapse>
