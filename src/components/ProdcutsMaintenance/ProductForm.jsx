@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createProdcut, getProductById, updateProductById } from "../../services/firebaseServices";
+import { createProdcut, getProductById, updateProductById } from "../../services/firebase/productServices";
 import FormList from "../Form/FormList";
 import { useEffect } from "react";
 

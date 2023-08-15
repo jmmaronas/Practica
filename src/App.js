@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CartContextProvider from './Context/CartContext';
-import { propulateDB } from './services/populateDB';
+import { propulateDB } from './services/firebase/populateDB';
 import { datamock } from './services/db_products';
 import ItemDetailListContainer from './components/ItemDetail/ItemDetailListContiner';
 import Checkout from './components/Checkout/Checkout';

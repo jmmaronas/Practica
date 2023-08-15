@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
 import Loading from "../Loading/Loading"
-import { getProducts, getProductsByCategory } from "../../services/firebaseServices"
+import { getProducts, getProductsByCategory } from "../../services/firebase/productServices"
 
 
 function ItemListContainer() {

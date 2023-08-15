@@ -1,4 +1,4 @@
-import { createProdcut } from "./firebaseServices.js";
+import { createProdcut } from "./productServices.js";
 
 export const propulateDB = async (arrayProducts) => {
     arrayProducts.forEach(product => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../../services/firebaseServices";
+import { getProducts } from "../../services/firebase/productServices";
 import ProductList from "./ProductList";
 import Loading from "../Loading/Loading";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
