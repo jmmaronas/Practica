@@ -2,6 +2,7 @@ import FormList from '../Form/FormList';
 import { useState } from 'react';
 import { createOrder } from '../../services/firebaseServices';
 import { useCartContext } from '../../Context/hookCartContext';
+import { serverTimestamp } from 'firebase/firestore';
 
 const usersFields=[
     {
@@ -40,8 +41,11 @@ function Checkout( ) {
     const handleSubmit =async (event) => {
         event.preventDefault()
         try {
-            const response= await createOrder({userData:data, items:{cart, date: new Date()}})
+            console.log(serverTimestamp())
+            const response= await createOrder({userData:data, items:{cart, date: serverTimestamp()}})
             console.log(response)
+            setData({})
+
         } catch (error) {
             console.log(error)
         }

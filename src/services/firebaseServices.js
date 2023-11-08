@@ -5,37 +5,38 @@ const prodcutRef = collection(db, "products")
 const orderRef = collection(db, "orders")
 
 export const getProducts = async () => {
-    const products = []
     const snapshot = await getDocs(prodcutRef)
-    snapshot.forEach(doc => {
-        products.push({ id: doc.id, ...doc.data() })
-    })
-    return products
+    if (!snapshot.empty) {
+        const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        return products
+    }
+    throw new Error("no se pudo acceder a los datos")
 }
 
 export const getProductsByCategory = async (category) => {
-    const products = []
     const q = query(prodcutRef, where("category", "==", category))
     const snapshot = await getDocs(q)
-    snapshot.forEach(doc => {
-        products.push({ id: doc.id, ...doc.data() })
-    })
-    return products
+    if (!snapshot.empty) {
+        const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        return products
+    }
+    throw new Error("no se pudo acceder a los datos")
 }
 
 
 export const getProductById = async (productId) => {
     const snapshot = await getDoc(doc(db, "products", productId))
+    console.log(snapshot)
     if (snapshot.exists()) {
         return { id: snapshot.id, ...snapshot.data() }
     }
-
+    throw new Error("Producto no encontrado")
 }
 
 export const updateProductById = async (product) => {
-    const {id} = product
+    const { id } = product
     delete product.id
-    await setDoc(doc(db, "products", id), product)    
+    await setDoc(doc(db, "products", id), product)
 }
 
 export const createProdcut = async (prodcut) => {
@@ -46,6 +47,6 @@ export const createProdcut = async (prodcut) => {
 }
 
 export const createOrder = async (data) => {
-    const {id} = await addDoc(orderRef, data)
+    const { id } = await addDoc(orderRef, data)
     return id
 }

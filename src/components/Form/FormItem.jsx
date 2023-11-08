@@ -12,7 +12,7 @@ function FormItem({ field, data, handleInput }) {
                 rows="4"
                 placeholder={field.placeholder}
                 name={field.name}
-                defaultValue={data[field.name]}
+                defaultValue={data[field.name] || ""}
                 />
                 :
                 <Form.Control 
@@ -20,7 +20,7 @@ function FormItem({ field, data, handleInput }) {
                 type={field.type}
                 placeholder={field.placeholder}
                 name={field.name}
-                defaultValue={data[field.name]}
+                value={data[field.name] || ""}
                 />
             }
             <Form.Text className="text-muted">
