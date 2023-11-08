@@ -2,7 +2,6 @@ import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "
 import { db } from "./firebase.js"
 
 const prodcutRef = collection(db, "products")
-const orderRef = collection(db, "orders")
 
 export const getProducts = async () => {
     const snapshot = await getDocs(prodcutRef)
@@ -46,7 +45,10 @@ export const createProdcut = async (prodcut) => {
     return result
 }
 
+<<<<<<< HEAD:src/services/firebaseServices.js
 export const createOrder = async (data) => {
     const { id } = await addDoc(orderRef, data)
     return id
 }
+=======
+>>>>>>> b9efac5998b078bd51ed04a565dedfc48cb26939:src/services/firebase/productServices.js
