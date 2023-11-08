@@ -45,10 +45,7 @@ export const createProdcut = async (prodcut) => {
     return result
 }
 
-<<<<<<< HEAD:src/services/firebaseServices.js
 export const createOrder = async (data) => {
     const { id } = await addDoc(orderRef, data)
     return id
 }
-=======
->>>>>>> b9efac5998b078bd51ed04a565dedfc48cb26939:src/services/firebase/productServices.js
